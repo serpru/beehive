@@ -1,23 +1,56 @@
 package beehive;
 
+import java.io.*;
 import java.util.concurrent.TimeUnit;
-
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.io.IOException;
 public class Program {
-
 	public static void main(String[] args) {
 		//	Initialize simulation
 		//	This will be changed later to let user enter simulation configuration
-		
-		// TU ZROBIMY ¯EBY Z PLIKU PROGRAM POBIERAL PARAMETRY STARTOWE
-		int it = 500;
-		int startingBees = 2;
-		int startingPlants = 10;
-		double speedMultiplier = 1;
-		double hungerMultiplier = 0.3;
-		double newPlantRate = 4;
-		double nectarRate = 0.3;
-		int speedMs = 10;
-		
+		String [] parameters = new String [8];
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(
+					"C:\\Users\\przem\\Desktop\\siemka.txt"));
+			for(int i = 0; i < 8; i++){
+				// read next line
+				parameters [i] = reader.readLine();
+				if(parameters[i] == null){
+					System.out.println("brakujace dane w pliku konfig");
+					return;
+				}
+			//	System.out.println(parameters[i]);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// TU ZROBIMY ï¿½EBY Z PLIKU PROGRAM POBIERAL PARAMETRY STARTOWE
+		int it = 0;
+		int startingBees = 0;
+		int startingPlants = 0;
+		double speedMultiplier = 0;
+		double hungerMultiplier = 0;
+		double newPlantRate = 0;
+		double nectarRate = 0;
+		int speedMs = 0;
+		try {
+			it = Integer.valueOf(parameters [0]);
+			startingBees = Integer.valueOf(parameters [1]);
+			startingPlants = Integer.valueOf(parameters [2]);
+			speedMultiplier = Double.valueOf(parameters [3]);
+			hungerMultiplier = Double.valueOf(parameters [4]);
+			newPlantRate = Double.valueOf(parameters [5]);
+			nectarRate = Double.valueOf(parameters [6]);
+			speedMs = Integer.valueOf(parameters [7]);
+		} catch (NumberFormatException e) {
+			System.out.println("blad w pliku konfig");
+			return;
+		}
+
 		//	TU STWORZYMY OBIEKT KLASY LOGGER
 		//	Logger logger = new Logger()
 
@@ -62,7 +95,7 @@ public class Program {
 				e.printStackTrace();
 			}
 		}
-		
+
 		//	Save data and close
 		//	TU LOGGER ZAPISZE DANE DO PLIKU W STYLU
 		//	logger.Log(sim.getInfo) i tak dalej
@@ -77,6 +110,20 @@ public class Program {
 		int averageStorage = sim.getHive().getTotalStorage()/it;
 		System.out.println("Average nectar amount in storage: "+averageStorage);
 		System.out.println("Total plants: "+sim.getPlantManager().getTotalPlants());
+
+		try {
+			PrintStream pencil = new PrintStream("filename.txt");
+			pencil.println("Total bees: "+sim.getHive().getTotalBees());
+			pencil.println("Average bee population: "+average);
+			pencil.println("Total nectar stored: "+sim.getHive().getTotalStorage());
+			pencil.println("Average nectar income per step: "+averageGathered);
+			pencil.println("Average nectar amount in storage: "+averageStorage);
+			pencil.println("Total plants: "+sim.getPlantManager().getTotalPlants());
+			pencil.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
 
 	}
 
