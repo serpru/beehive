@@ -7,14 +7,19 @@ public class Program {
 	public static void main(String[] args) {
 		//	Initialize simulation
 		//	This will be changed later to let user enter simulation configuration
+		
+		// TU ZROBIMY ¯EBY Z PLIKU PROGRAM POBIERAL PARAMETRY STARTOWE
 		int it = 500;
 		int startingBees = 2;
 		int startingPlants = 10;
 		double speedMultiplier = 1;
-		double hungerMultiplier = 0.5;
+		double hungerMultiplier = 0.3;
 		double newPlantRate = 4;
-		double nectarRate = 0.1;
-		int speedMs = 50;
+		double nectarRate = 0.3;
+		int speedMs = 10;
+		
+		//	TU STWORZYMY OBIEKT KLASY LOGGER
+		//	Logger logger = new Logger()
 
 		Simulation sim = new Simulation(
 			it, 
@@ -36,11 +41,11 @@ public class Program {
 		{
 			String text = String.valueOf(sim.getCount());
 			guiM.iterationText.setText("Iterarion "+text);
-			guiM.plantLabel.setText("Plants: "+Integer.toString(sim.plantM.getPlants().size()));
-			guiM.hiveLabel.setText("Hive storage: "+Integer.toString(sim.hive.getStorage())+"/"+sim.hive.getStorageMax());
+			guiM.plantLabel.setText("Plants: "+Integer.toString(sim.getPlantManager().getPlants().size()));
+			guiM.hiveLabel.setText("Hive storage: "+Integer.toString(sim.getHive().getStorage())+"/"+sim.getHive().getStorageMax());
 			guiM.statusMessage.setText(sim.getInfo());
 			
-			String bees = "Bees: "+Integer.toString(sim.hive.getMyBees().size())+" | Nectar Bees: "+sim.hive.getNectarBees();
+			String bees = "Bees: "+Integer.toString(sim.getHive().getMyBees().size())+" | Nectar Bees: "+sim.getHive().getNectarBees();
 			
 			guiM.beeLabel.setText(bees);
 			System.out.print("### Iteration " + (sim.getCount()+1) + " ###\n");
@@ -59,8 +64,19 @@ public class Program {
 		}
 		
 		//	Save data and close
+		//	TU LOGGER ZAPISZE DANE DO PLIKU W STYLU
+		//	logger.Log(sim.getInfo) i tak dalej
 		sim.Stop();
 		guiM.statusMessage.setText(sim.getInfo());
+		System.out.println("Total bees: "+sim.getHive().getTotalBees());
+		int average = sim.getHive().getTotalBees()/it;
+		System.out.println("Average bee population: "+average);
+		System.out.println("Total nectar stored: "+sim.getHive().getTotalStorage());
+		int averageGathered = sim.getHive().getTotalGathered()/it;
+		System.out.println("Average nectar income per step: "+averageGathered);
+		int averageStorage = sim.getHive().getTotalStorage()/it;
+		System.out.println("Average nectar amount in storage: "+averageStorage);
+		System.out.println("Total plants: "+sim.getPlantManager().getTotalPlants());
 
 	}
 

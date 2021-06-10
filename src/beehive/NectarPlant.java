@@ -30,7 +30,7 @@ public class NectarPlant extends Plant implements INectarable {
 		UpdateNectar();
 	}
 	
-	public void UpdateNectar()
+	private void UpdateNectar()
 	{
 		//	Replenishes nectar
 		storage += 10*nectarRate;
@@ -58,7 +58,18 @@ public class NectarPlant extends Plant implements INectarable {
 		return amount;
 	}
 	
-//	Getters, Setters
+	public void addTarget()
+	{
+		//	Adds to how many bees target this plant
+		howManyTargets++;
+	}
+	
+	public void removeTarget()
+	{
+		howManyTargets--;
+	}
+
+	//	Getters, Setters
 	public void setNectarRate(int rate)
 	{
 		this.nectarRate = rate;
@@ -89,15 +100,7 @@ public class NectarPlant extends Plant implements INectarable {
 		return howManyTargets;
 	}
 	
-	public void addTarget()
-	{
-		//	Adds to how many bees target this plant
-		howManyTargets++;
-	}
-	public void removeTarget()
-	{
-		howManyTargets--;
-	}
+
 
 	@Override
 	public ObjectType getObjectType() {return type;}

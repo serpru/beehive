@@ -6,13 +6,13 @@ import java.util.Map;
 
 public class Simulation {
 	ArrayList<ISimObject> objects;
-	int count;
-	int iterations;
+	private int count;
+	private int iterations;
 	private Board board;
 	private String info;
 	
-	PlantManager plantM;
-	Hive hive;
+	private PlantManager plantM;
+	private Hive hive;
 	
 	public Simulation(int iterations, int startingBees, int startingPlants, double speedMult, double hungerMult, double newPlantRate, double nectarRate)
 	{
@@ -70,4 +70,6 @@ public class Simulation {
 	public int getCount() {return count;}
 	public Board getBoard() {return board;}
 	public String getInfo() {return info;}
+	public Hive getHive() {return hive;}
+	public PlantManager getPlantManager() {return plantM;}
 }

@@ -3,7 +3,7 @@ package beehive;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlantManager implements ISimObject {
+public class PlantManager {
 	//	Manages all the plants in the simulation.
 	
 	private ArrayList<Plant> plants;
@@ -29,17 +29,19 @@ public class PlantManager implements ISimObject {
 		this.nectarRate = nectarRate;
 		this.totalPlants = 0;
 		
+		//	Plants start all as NectarPlants
 		for (int i = 0; i < startingPlants; i++)
 		{
 			Coordinates coords = new Coordinates(random.nextInt(500),random.nextInt(500));
 			AddPlant(new NectarPlant(myBoard, this, coords, nectarRate, 100));
 		}
-		
+		this.totalPlants = startingPlants;
 	}
 
 	public void AddPlant(Plant p)
 	{
 		plants.add(p);
+		this.totalPlants += 1;
 	}
 	
 	public void RemovePlant(Plant p)
@@ -49,7 +51,6 @@ public class PlantManager implements ISimObject {
 	
 	public ArrayList<Plant> getPlants() {return plants;}
 
-	@Override
 	public boolean DoStuff() {
 		//	PlantManager calls all its plants to do their thing
 		
@@ -119,6 +120,7 @@ public class PlantManager implements ISimObject {
 		newPlantRatio = 10*newPlantRate*newPlantRate/plants.size();
 	}
 
-	@Override
 	public String getStatus() {return status;}
+	
+	public int getTotalPlants() {return totalPlants;}
 }
