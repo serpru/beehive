@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Simulation {
-	ArrayList<ISimObject> objects;
 	private int count;
 	private int iterations;
 	private Board board;
@@ -16,8 +15,8 @@ public class Simulation {
 	
 	public Simulation(int iterations, int startingBees, int startingPlants, double speedMult, double hungerMult, double newPlantRate, double nectarRate)
 	{
-		this.iterations = iterations+1;
-		count = 1;
+		this.iterations = iterations;
+		count = 0;
 		board = new Board(new Coordinates(499,499));
 		info = "Ready to start!";
 		plantM = new PlantManager(board, newPlantRate, nectarRate, startingPlants);
@@ -68,6 +67,7 @@ public class Simulation {
 	
 //	Getters, setters
 	public int getCount() {return count;}
+	public int getIterations() {return iterations;}
 	public Board getBoard() {return board;}
 	public String getInfo() {return info;}
 	public Hive getHive() {return hive;}

@@ -6,6 +6,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.io.IOException;
+import java.net.URL;
 public class Program {
 	public static void main(String[] args) {
 		//	Initialize simulation
@@ -13,8 +14,7 @@ public class Program {
 		String [] parameters = new String [8];
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader(
-					"C:\\Users\\przem\\Desktop\\siemka.txt"));
+			reader = new BufferedReader(new FileReader("siemka.txt"));
 			for(int i = 0; i < 8; i++){
 				// read next line
 				parameters [i] = reader.readLine();
@@ -113,6 +113,8 @@ public class Program {
 
 		try {
 			PrintStream pencil = new PrintStream("filename.txt");
+			pencil.println("Simulation result: "+sim.getInfo());
+			pencil.println("Iteriations run: "+sim.getIterations());
 			pencil.println("Total bees: "+sim.getHive().getTotalBees());
 			pencil.println("Average bee population: "+average);
 			pencil.println("Total nectar stored: "+sim.getHive().getTotalStorage());
