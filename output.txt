@@ -1,0 +1,7 @@
+Simulation result: Simulation ended succesfully!
+Total bees: 25320
+Average bee population: 50
+Total nectar stored: 454514
+Average nectar income per step: 29
+Average nectar amount in storage: 909
+Total plants: 193
