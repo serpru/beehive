@@ -23,22 +23,10 @@ public class Simulation {
 		hive = new Hive(board, new Coordinates(250,250), 1000, startingBees, hungerMult, speedMult);
 	}
 	
-	public boolean Start()
-	{
-		//	Readies the simulation for start
-		System.out.println("Simulation.Start()");
-		
-		return true;
-	}
-	
 	public boolean Next()
 	{
 		//	Next step/frame/iteration in the simulation. All objects are told to DoStuff
 		//	Returns false if any object doesn't finish their job
-		
-		
-		//info = "";
-		System.out.println("Simulation.Next()");
 		count++;
 		
 		if (!plantM.DoStuff()) 
@@ -60,7 +48,6 @@ public class Simulation {
 	public boolean Stop()
 	{
 		//	Ends simulation. Writes message with info how simulation ended (success, failure)
-		System.out.println("\nSimulation.Stop()");
 		if (count == iterations) info = "Simulation ended succesfully!";
 		return true;
 	}

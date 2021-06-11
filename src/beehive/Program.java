@@ -3,13 +3,15 @@ package beehive;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
 import java.io.IOException;
+
 public class Program {
 	public static void main(String[] args) {
-		//	Initialize simulation
-		//	This will be changed later to let user enter simulation configuration
+		
+		//	Read from input file
 		String [] parameters = new String [8];
 		BufferedReader reader;
-		try {
+		try 
+		{
 			reader = new BufferedReader(new FileReader("input.txt"));
 			for(int i = 0; i < 8; i++){
 				// read next line
@@ -19,13 +21,14 @@ public class Program {
 					System.out.println("brakujace dane w pliku konfig");
 					return;
 				}
-			//	System.out.println(parameters[i]);
 			}
 			reader.close();
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 
+		//	Initialize input parameters
 		int it = 0;
 		int startingBees = 0;
 		int startingPlants = 0;
@@ -50,14 +53,15 @@ public class Program {
 			return;
 		}
 		
+		//	Make sure parameters aren't negative
 		if (it < 0) it = 1;
-		if (startingBees < 0) startingBees = 0;
-		if (startingPlants < 0) startingPlants = 0;
-		if (speedMultiplier < 0) speedMultiplier = 0;
-		if (hungerMultiplier < 0) hungerMultiplier = 0;
-		if (newPlantRate < 0) newPlantRate = 0;
-		if (nectarRate < 0) nectarRate = 0;
-		if (simSpeed < 0) simSpeed = 0;
+		if (startingBees < 0) startingBees = 1;
+		if (startingPlants < 0) startingPlants = 1;
+		if (speedMultiplier < 0) speedMultiplier = 1;
+		if (hungerMultiplier < 0) hungerMultiplier = 1;
+		if (newPlantRate < 0) newPlantRate = 1;
+		if (nectarRate < 0) nectarRate = 1;
+		if (simSpeed < 0) simSpeed = 1;
 
 		//	Creating simulation object
 		Simulation sim = new Simulation(
@@ -68,8 +72,6 @@ public class Program {
 			hungerMultiplier, 
 			newPlantRate, 
 			nectarRate);
-		
-		sim.Start();
 		
 		//	Initialize GUI
 		GuiManager guiM = new GuiManager(sim.getBoard());
@@ -85,9 +87,8 @@ public class Program {
 			guiM.statusMessage.setText(sim.getInfo());
 			
 			String bees = "Bees: "+Integer.toString(sim.getHive().getMyBees().size())+" | Nectar Bees: "+sim.getHive().getNectarBees();
-			
 			guiM.beeLabel.setText(bees);
-			System.out.print("### Iteration " + (sim.getCount()+1) + " ###\n");
+			
 			if(!sim.Next())
 			{
 				break;
@@ -105,6 +106,8 @@ public class Program {
 		//	Stop simulation
 		sim.Stop();
 		guiM.statusMessage.setText(sim.getInfo());
+		
+		//	Calculate data for output file
 		int average = sim.getHive().getTotalBees()/it;
 		int averageGathered = sim.getHive().getTotalGathered()/it;
 		int averageStorage = sim.getHive().getTotalStorage()/it;

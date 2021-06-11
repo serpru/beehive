@@ -108,8 +108,6 @@ public class Hive implements IBoardable, INectarable {
 		totalBees += myBees.size();
 		totalStorageSum += storage;
 		
-		System.out.println("Bee rate: "+newBeeRate);
-		
 		//	Random accidents happen, killing bees in the process
 		if (myBees.size() > 10)
 		{
