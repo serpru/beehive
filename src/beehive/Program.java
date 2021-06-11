@@ -3,7 +3,6 @@ package beehive;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.io.IOException;
 public class Program {
@@ -14,7 +13,7 @@ public class Program {
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(
-					"C:\\Users\\przem\\Desktop\\siemka.txt"));
+					"siemka.txt"));
 			for(int i = 0; i < 8; i++){
 				// read next line
 				parameters [i] = reader.readLine();
@@ -112,19 +111,16 @@ public class Program {
 		System.out.println("Total plants: "+sim.getPlantManager().getTotalPlants());
 
 		try {
-			PrintStream pencil = new PrintStream("filename.txt");
-			pencil.println("Total bees: "+sim.getHive().getTotalBees());
-			pencil.println("Average bee population: "+average);
-			pencil.println("Total nectar stored: "+sim.getHive().getTotalStorage());
-			pencil.println("Average nectar income per step: "+averageGathered);
-			pencil.println("Average nectar amount in storage: "+averageStorage);
-			pencil.println("Total plants: "+sim.getPlantManager().getTotalPlants());
-			pencil.close();
-		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
+			Logger beeLoger = new Logger("output.txt");
+			beeLoger.log("Total bees: "+sim.getHive().getTotalBees());
+			beeLoger.log("Average bee population: "+average);
+			beeLoger.log("Total nectar stored: "+sim.getHive().getTotalStorage());
+			beeLoger.log("Average nectar income per step: "+averageGathered);
+			beeLoger.log("Average nectar amount in storage: "+averageStorage);
+			beeLoger.log("Total plants: "+sim.getPlantManager().getTotalPlants());
+			beeLoger.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("nie mozna utworzyc log");
 		}
-
 	}
-
 }
