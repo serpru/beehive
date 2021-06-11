@@ -76,6 +76,7 @@ public class GuiManager {
 		
 		
 		frame.setResizable(false);
+		frame.setTitle("Beehive Simulator");
 		
 		//Make JFrame visible 
 		frame.setVisible(true);

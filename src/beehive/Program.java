@@ -2,11 +2,7 @@ package beehive;
 
 import java.io.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.io.IOException;
-import java.net.URL;
 public class Program {
 	public static void main(String[] args) {
 		//	Initialize simulation
@@ -14,9 +10,10 @@ public class Program {
 		String [] parameters = new String [8];
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("siemka.txt"));
+			reader = new BufferedReader(new FileReader("input.txt"));
 			for(int i = 0; i < 8; i++){
 				// read next line
+				reader.readLine();
 				parameters [i] = reader.readLine();
 				if(parameters[i] == null){
 					System.out.println("brakujace dane w pliku konfig");
@@ -28,7 +25,7 @@ public class Program {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// TU ZROBIMY �EBY Z PLIKU PROGRAM POBIERAL PARAMETRY STARTOWE
+
 		int it = 0;
 		int startingBees = 0;
 		int startingPlants = 0;
@@ -36,7 +33,9 @@ public class Program {
 		double hungerMultiplier = 0;
 		double newPlantRate = 0;
 		double nectarRate = 0;
-		int speedMs = 0;
+		int simSpeed = 0;
+		
+		//	Assigning values from input file
 		try {
 			it = Integer.valueOf(parameters [0]);
 			startingBees = Integer.valueOf(parameters [1]);
@@ -45,15 +44,22 @@ public class Program {
 			hungerMultiplier = Double.valueOf(parameters [4]);
 			newPlantRate = Double.valueOf(parameters [5]);
 			nectarRate = Double.valueOf(parameters [6]);
-			speedMs = Integer.valueOf(parameters [7]);
+			simSpeed = Integer.valueOf(parameters [7]);
 		} catch (NumberFormatException e) {
 			System.out.println("blad w pliku konfig");
 			return;
 		}
+		
+		if (it < 0) it = 1;
+		if (startingBees < 0) startingBees = 0;
+		if (startingPlants < 0) startingPlants = 0;
+		if (speedMultiplier < 0) speedMultiplier = 0;
+		if (hungerMultiplier < 0) hungerMultiplier = 0;
+		if (newPlantRate < 0) newPlantRate = 0;
+		if (nectarRate < 0) nectarRate = 0;
+		if (simSpeed < 0) simSpeed = 0;
 
-		//	TU STWORZYMY OBIEKT KLASY LOGGER
-		//	Logger logger = new Logger()
-
+		//	Creating simulation object
 		Simulation sim = new Simulation(
 			it, 
 			startingBees, 
@@ -72,7 +78,7 @@ public class Program {
 		//	Loop for it-iterations or simulation failure
 		for (int i = 0; i < it; i++)
 		{
-			String text = String.valueOf(sim.getCount());
+			String text = String.valueOf(sim.getCount()+1);
 			guiM.iterationText.setText("Iterarion "+text);
 			guiM.plantLabel.setText("Plants: "+Integer.toString(sim.getPlantManager().getPlants().size()));
 			guiM.hiveLabel.setText("Hive storage: "+Integer.toString(sim.getHive().getStorage())+"/"+sim.getHive().getStorageMax());
@@ -90,43 +96,33 @@ public class Program {
 			
 			//	Artificial way to slow down the program so the user can see what's happening on the screen
 			try {
-				TimeUnit.MILLISECONDS.sleep(speedMs);
+				TimeUnit.MILLISECONDS.sleep(simSpeed);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 
-		//	Save data and close
-		//	TU LOGGER ZAPISZE DANE DO PLIKU W STYLU
-		//	logger.Log(sim.getInfo) i tak dalej
+		//	Stop simulation
 		sim.Stop();
 		guiM.statusMessage.setText(sim.getInfo());
-		System.out.println("Total bees: "+sim.getHive().getTotalBees());
 		int average = sim.getHive().getTotalBees()/it;
-		System.out.println("Average bee population: "+average);
-		System.out.println("Total nectar stored: "+sim.getHive().getTotalStorage());
 		int averageGathered = sim.getHive().getTotalGathered()/it;
-		System.out.println("Average nectar income per step: "+averageGathered);
 		int averageStorage = sim.getHive().getTotalStorage()/it;
-		System.out.println("Average nectar amount in storage: "+averageStorage);
-		System.out.println("Total plants: "+sim.getPlantManager().getTotalPlants());
 
+		//	Saving data to file
 		try {
-			PrintStream pencil = new PrintStream("filename.txt");
-			pencil.println("Simulation result: "+sim.getInfo());
-			pencil.println("Iteriations run: "+sim.getIterations());
-			pencil.println("Total bees: "+sim.getHive().getTotalBees());
-			pencil.println("Average bee population: "+average);
-			pencil.println("Total nectar stored: "+sim.getHive().getTotalStorage());
-			pencil.println("Average nectar income per step: "+averageGathered);
-			pencil.println("Average nectar amount in storage: "+averageStorage);
-			pencil.println("Total plants: "+sim.getPlantManager().getTotalPlants());
-			pencil.close();
-		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
+			Logger beeLoger = new Logger("output.txt");
+			beeLoger.log("Simulation result: "+sim.getInfo());
+			beeLoger.log("Total bees: "+sim.getHive().getTotalBees());
+			beeLoger.log("Average bee population: "+average);
+			beeLoger.log("Total nectar stored: "+sim.getHive().getTotalStorage());
+			beeLoger.log("Average nectar income per step: "+averageGathered);
+			beeLoger.log("Average nectar amount in storage: "+averageStorage);
+			beeLoger.log("Total plants: "+sim.getPlantManager().getTotalPlants());
+			beeLoger.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("nie mozna utworzyc log");		
 		}
-
 	}
 
 }

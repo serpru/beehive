@@ -1,0 +1,16 @@
+iterations
+500
+startingBees
+5
+startingPlants
+5
+speedMultiplier
+1
+hungerMultiplier
+0.3
+newPlantRate
+4
+nectarRate
+0.3
+simSpeed
+10
