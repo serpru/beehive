@@ -1,0 +1,6 @@
+Total bees: 101
+Average bee population: 8
+Total nectar stored: 2319
+Average nectar income per step: 21
+Average nectar amount in storage: 193
+Total plants: 45

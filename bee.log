@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-06-10T20:54:14.898838500Z</date>
+  <millis>1623358454898</millis>
+  <nanos>838500</nanos>
+  <sequence>0</sequence>
+  <logger>beehive.Program</logger>
+  <level>INFO</level>
+  <class>beehive.Program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Information message</message>
+</record>
+<record>
+  <date>2021-06-10T20:54:15.209008800Z</date>
+  <millis>1623358455209</millis>
+  <nanos>8800</nanos>
+  <sequence>1</sequence>
+  <logger>beehive.Program</logger>
+  <level>WARNING</level>
+  <class>beehive.Program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Warning message</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-06-10T20:54:27.548020200Z</date>
+  <millis>1623358467548</millis>
+  <nanos>20200</nanos>
+  <sequence>0</sequence>
+  <logger>beehive.Program</logger>
+  <level>INFO</level>
+  <class>beehive.Program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Information message</message>
+</record>
+<record>
+  <date>2021-06-10T20:54:27.611848900Z</date>
+  <millis>1623358467611</millis>
+  <nanos>848900</nanos>
+  <sequence>1</sequence>
+  <logger>beehive.Program</logger>
+  <level>WARNING</level>
+  <class>beehive.Program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Warning message</message>
+</record>
+</log>
