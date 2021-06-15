@@ -4,22 +4,55 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * GuiManager manages the window display of the simulation for viewing purposes.
+ * @author Serafin Prusik
+ *
+ */
 public class GuiManager {
 	//	Manages everything that happens on screen.
 	
+	/**
+	 * Board to display.
+	 */
 	private Board mapa;
+	/**
+	 * Application's window.
+	 */
 	JFrame frame;
+	/**
+	 * Label displaying number of plants present.
+	 */
 	JLabel plantLabel;
+	/**
+	 * Label displaying hive nectar storage.
+	 */
 	JLabel hiveLabel;
+	/**
+	 * Label displaying number of bees present.
+	 */
 	JLabel beeLabel;
+	/**
+	 * Label displaying current iteration number.
+	 */
 	JLabel iterationText;
+	/**
+	 * Label displaying status message of Simulation object.
+	 */
 	JLabel statusMessage;
 	
+	/**
+	 * Creates GUI object.
+	 * @param mapa Board to display.
+	 */
 	public GuiManager(Board mapa)
 	{
 		this.mapa = mapa;
 	}
 	
+	/**
+	 * Initializes GUI.
+	 */
 	public void Go()
 	{
 		frame = new JFrame();
@@ -82,6 +115,9 @@ public class GuiManager {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Draws window content.
+	 */
 	public void Draw()
 	{
 		//	UpdateText();

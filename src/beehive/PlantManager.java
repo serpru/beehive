@@ -3,22 +3,61 @@ package beehive;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Plant manager manages plants in the simulation.
+ * @author Serafin Prusik
+ *
+ */
 public class PlantManager {
 	//	Manages all the plants in the simulation.
 	
+	/**
+	 * List of plants.
+	 */
 	private ArrayList<Plant> plants;
+	/**
+	 * Random variable for random events.
+	 */
 	private Random random;
+	/**
+	 * Progress for new plant to be created.
+	 */
 	private double newPlantProgress;
+	/**
+	 * New plant ratio's component.
+	 */
 	private double newPlantRate;
+	/**
+	 * How fast new plants get created.
+	 */
 	private double newPlantRatio;
+	/**
+	 * Board plants live on.
+	 */
 	private Board myBoard;
+	/**
+	 * How fast plants produce nectar.
+	 */
 	private double nectarRate;
+	/**
+	 * Status message.
+	 */
 	private String status = "PlantManager: all is good!";
 	
 	
 	//	Stats
+	/**
+	 * Total number of plants that lived.
+	 */
 	private int totalPlants;
 	
+	/**
+	 * Creates PlantManager object.
+	 * @param myBoard Board to put plants on.
+	 * @param newPlantRate How fast new plants get created.
+	 * @param nectarRate How fast plants generate nectar.
+	 * @param startingPlants How many plants PlantManager starts with.
+	 */
 	public PlantManager(Board myBoard, double newPlantRate, double nectarRate, int startingPlants)
 	{
 		this.myBoard = myBoard;
@@ -38,19 +77,35 @@ public class PlantManager {
 		this.totalPlants = startingPlants;
 	}
 
+	/**
+	 * Adds plant to the list.
+	 * @param p Plant to be added.
+	 */
 	public void AddPlant(Plant p)
 	{
 		plants.add(p);
 		this.totalPlants += 1;
 	}
 	
+	/**
+	 * Removes plant from the list.
+	 * @param p Plant to be removed.
+	 */
 	public void RemovePlant(Plant p)
 	{
 		plants.remove(p);
 	}
 	
+	/**
+	 * Gets list of all plants.
+	 * @return Returns list of all plants.
+	 */
 	public ArrayList<Plant> getPlants() {return plants;}
 
+	/**
+	 * Plant manager manages plants and delegates them to grow.
+	 * @return Returns false if there are no more plants.
+	 */
 	public boolean DoStuff() {
 		//	PlantManager calls all its plants to do their thing
 		
@@ -82,6 +137,9 @@ public class PlantManager {
 		return true;
 	}
 	
+	/**
+	 * Updates progress to new plant to be created.
+	 */
 	private void UpdateNewPlantProgress()
 	{
 		//	Calculates progress for new plant to be born
@@ -115,12 +173,23 @@ public class PlantManager {
 		}
 	}
 	
+	/**
+	 * Calculates how fast new plants get created.
+	 */
 	private void CalculatePlantRate()
 	{
 		newPlantRatio = 10*newPlantRate*newPlantRate/plants.size();
 	}
 
+	/**
+	 * Gets plant manager's status.
+	 * @return Returns status.
+	 */
 	public String getStatus() {return status;}
 	
+	/**
+	 * Gets number of all plants that lived.
+	 * @return Returns number of total plants.
+	 */
 	public int getTotalPlants() {return totalPlants;}
 }
