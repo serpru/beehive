@@ -3,20 +3,64 @@ package beehive;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * Nectar bees collect nectar to store in their hive.
+ * @author Serafin Prusik
+ *
+ */
 public class NectarBee extends Bee implements IBoardable, INectarable{
 	//	Collects nectar for Hive
 
+	/**
+	 * Board bee moves on.
+	 */
 	protected Board myBoard;
+	/**
+	 * Position on the Board.
+	 */
 	protected Coordinates position;
+	/**
+	 * Current nectar storage.
+	 */
 	protected int storage;
+	/**
+	 * Maximum nectar storage capacity.
+	 */
 	protected int storageMax;
+	/**
+	 * How fast bee moves on the Board.
+	 */
 	protected double speed;
+	/**
+	 * Current target to move to.
+	 */
 	protected IBoardable target;
+	/**
+	 * Color to display as in GUI.
+	 */
 	protected Color c = Color.YELLOW;
+	/**
+	 * Current objective.
+	 */
 	protected BeeState myState;
+	/**
+	 * Object type on the Board.
+	 */
 	private ObjectType type = ObjectType.NECTAR_BEE;
+	/**
+	 * Size to display in GUI.
+	 */
 	private int size = 3;
 	
+	/**
+	 * Creates NectarBee object.
+	 * @param hive Hive bee belongs to.
+	 * @param hunger Current hunger.
+	 * @param hungerMult How fast bee gets hungry.
+	 * @param board Board bee moves on.
+	 * @param position Position on the Board.
+	 * @param speed How fast bee moves on the Board.
+	 */
 	public NectarBee(Hive hive, double hunger, double hungerMult, Board board, Coordinates position, double speed)
 	{
 		super(hive, hunger, hungerMult);
@@ -30,6 +74,9 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		myBoard.Add(this);
 	}
 
+	/**
+	 * Bee works for the hive.
+	 */
 	@Override
 	public void Work() {
 		// NectarBee flies to the plants collecting nectar and bringing it back to the Hive
@@ -78,6 +125,9 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		}	
 	}
 
+	/**
+	 * Eats nectar from hive.
+	 */
 	@Override
 	protected void Eat() {
 		// NectarBee eats from its storage, then from hive (how it gets hive's nectar across the map is its secret, shhhh!)
@@ -85,6 +135,9 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		else hunger -= myHive.RemoveNectar((int)(hungerThreshold*0.8));
 	}
 
+	/**
+	 * Bee dies.
+	 */
 	@Override
 	protected void Die() {
 		//	NectarBee dies. Gets removed from Hive and Board to lose references
@@ -92,6 +145,11 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		myHive.RemoveBee(this);
 	}
 	
+	/**
+	 * Moves to the target.
+	 * @param t Target to move to.
+	 * @return Returns false if the bee have not reached the target yet.
+	 */
 	protected boolean Move(IBoardable t)
 	{
 		//	Moves to the target in a straight line
@@ -129,6 +187,9 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		return false;
 	}
 
+	/**
+	 * Adds nectar to storage by amount.
+	 */
 	@Override
 	public void AddNectar(int amount) {
 		// Adds nectar by amount
@@ -136,6 +197,9 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		if (storage > storageMax) storage = storageMax;
 	}
 
+	/**
+	 * Removes nectar from storage by amount.
+	 */
 	@Override
 	public int RemoveNectar(int amount) {
 		// Removes nectar by amount or less if not enough in storage
@@ -149,6 +213,11 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 		return amount;
 	}
 	
+	/**
+	 * Finds the plant with highest nectar-to-distance ratio.
+	 * @param list List of objects on the Board.
+	 * @return Returns NectarPlant most suited to fly to.
+	 */
 	public NectarPlant FindClosestPlant(ArrayList<IBoardable> list)
 	{
 		//	Finds the closest Plant by calculating vector distance and choosing the smallest
@@ -191,18 +260,33 @@ public class NectarBee extends Bee implements IBoardable, INectarable{
 	}
 
 	//	Getters, setters
+	/**
+	 * Gets current position.
+	 */
 	@Override
 	public Coordinates getCoordinates() {return position;}
 
+	/**
+	 * Gets the Board bee moves on.
+	 */
 	@Override
 	public Board getBoard() {return myBoard;}
 
+	/**
+	 * Gets the color to display bee as in GUI.
+	 */
 	@Override
 	public Color getColor() {return c;}
 	
+	/**
+	 * Gets bee's object type.
+	 */
 	@Override
 	public ObjectType getObjectType() {return type;}
 
+	/**
+	 * Gets bee's size to be displayed in GUI.
+	 */
 	@Override
 	public int getSize() {return size;}
 }

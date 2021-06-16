@@ -3,17 +3,32 @@ package beehive;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Draw panel to draw board on.
+ * @author Serafin Prusik
+ *
+ */
 public class MyDrawPanel extends JPanel{
 	//	Draws board objects on screen
 	
+	/**
+	 * Board to gather data from.
+	 */
 	private Board mapa;
 	
+	/**
+	 * Creates MyDrawPanel object.
+	 * @param mapa Board to gather data from.
+	 */
 	MyDrawPanel(Board mapa)
 	{
 		this.mapa = mapa;
 		setSize(mapa.getMaxSize().getX(), mapa.getMaxSize().getY());
 	}
 
+	/**
+	 * Paints objects the Board contains and places them on visual board.
+	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{	

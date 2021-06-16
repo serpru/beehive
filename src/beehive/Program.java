@@ -4,7 +4,16 @@ import java.io.*;
 import java.util.concurrent.TimeUnit;
 import java.io.IOException;
 
+/**
+ * Main program class.
+ * @author Serafin Prusik
+ * @author Przemyslaw Karcz
+ */
 public class Program {
+	/**
+	 * Main program method.
+	 * @param args Main() arguments.
+	 */
 	public static void main(String[] args) {
 		
 		//	Read from input file
