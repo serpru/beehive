@@ -12,7 +12,7 @@ public class Board {
 	/**
 	 * List of all objects present on board.
 	 */
-	ArrayList<IBoardable> boardObjects;
+	private ArrayList<IBoardable> boardObjects;
 	/**
 	 * Board's bounds.
 	 */

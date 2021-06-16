@@ -19,7 +19,7 @@ public class GuiManager {
 	/**
 	 * Application's window.
 	 */
-	JFrame frame;
+	private JFrame frame;
 	/**
 	 * Label displaying number of plants present.
 	 */
