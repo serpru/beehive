@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * Worker bees work inside the hive, repairing it.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public class WorkerBee extends Bee{

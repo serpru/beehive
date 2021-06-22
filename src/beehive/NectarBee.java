@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Nectar bees collect nectar to store in their hive.
- * @author Serafin Prusik
+ * 
  *
  */
 public class NectarBee extends Bee implements IBoardable, INectarable{

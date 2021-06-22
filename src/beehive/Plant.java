@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * Every plant object inherits from this class.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public abstract class Plant implements IBoardable {

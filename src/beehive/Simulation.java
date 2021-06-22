@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * Simulation manages entire simulation process.
- * @author Serafin Prusik
+ * 
  *
  */
 public class Simulation {

@@ -6,8 +6,8 @@ import java.io.IOException;
 
 /**
  * Main program class.
- * @author Serafin Prusik
- * @author Przemyslaw Karcz
+ * 
+ * 
  */
 public class Program {
 	/**

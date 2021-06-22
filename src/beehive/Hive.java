@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * Hive is a colony/manager for bees living in it. It feeds bees nectar the bees collect.
- * @author Serafin Prusik
+ * 
  *
  */
 public class Hive implements IBoardable, INectarable {

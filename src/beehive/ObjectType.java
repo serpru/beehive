@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * ObjectType is an enum variable every IBoardable object must have.
- * @author Serafin Prusik
+ * 
  *
  */
 public enum ObjectType {

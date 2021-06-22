@@ -5,7 +5,7 @@ import java.awt.*;
 
 /**
  * Draw panel to draw board on.
- * @author Serafin Prusik
+ * 
  *
  */
 public class MyDrawPanel extends JPanel{

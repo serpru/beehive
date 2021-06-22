@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 /**
  * Logger writes logs to a text file.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public class Logger

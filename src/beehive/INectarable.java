@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * Every object that stores nectar must implement this.
- * @author Serafin Prusik.
+ * 
  *
  */
 public interface INectarable {

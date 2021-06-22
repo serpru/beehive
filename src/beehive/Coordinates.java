@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * Coordinates in 2D space.
- * @author Serafin Prusik
+ * 
  *
  */
 public class Coordinates {

@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Plant manager manages plants in the simulation.
- * @author Serafin Prusik
+ * 
  *
  */
 public class PlantManager {
