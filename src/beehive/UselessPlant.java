@@ -4,7 +4,7 @@ import java.awt.Color;
 
 /**
  * Useless plant grows, but does not produce nectar.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public class UselessPlant extends Plant{

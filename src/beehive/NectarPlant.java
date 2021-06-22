@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Nectar plants grow and produce nectar.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public class NectarPlant extends Plant implements INectarable {

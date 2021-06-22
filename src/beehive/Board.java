@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Board acts as a map for objects to move on.
- * @author Serafin Prusik
+ * 
  *
  */
 public class Board {

@@ -2,7 +2,7 @@ package beehive;
 
 /**
  * Bee's objective state.
- * @author Serafin Prusik
+ * 
  *
  */
 public enum BeeState {

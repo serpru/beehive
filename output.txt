@@ -1,7 +1,7 @@
-Simulation result: Simulation ended prematurely: Hive: no more bees!
-Total bees: 0
-Average bee population: 0
-Total nectar stored: 0
-Average nectar income per step: 0
-Average nectar amount in storage: 0
-Total plants: 7
+Simulation result: Simulation ended succesfully!
+Total bees: 24848
+Average bee population: 49
+Total nectar stored: 449394
+Average nectar income per step: 28
+Average nectar amount in storage: 898
+Total plants: 195

@@ -4,7 +4,7 @@ import java.awt.Color;
 
 /**
  * Every object present on Board must implement this interface.
- * @author Serafin Prusik
+ * 
  *
  */
 public interface IBoardable {

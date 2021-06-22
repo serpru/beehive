@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  * GuiManager manages the window display of the simulation for viewing purposes.
- * @author Serafin Prusik
+ * 
  *
  */
 public class GuiManager {

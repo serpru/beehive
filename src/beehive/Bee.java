@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Abstract class for all bees to inherit from.
- * @author Przemyslaw Karcz
+ * 
  *
  */
 public abstract class Bee {
